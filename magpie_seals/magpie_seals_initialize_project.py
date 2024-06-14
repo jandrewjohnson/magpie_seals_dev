@@ -267,14 +267,10 @@ def build_task_tree_by_name(p, task_tree_name):
 def build_magpie_seals_task_tree(p):
 
     # Define the project AOI
+    p.magpie_task = p.add_task(magpie_integration.launch_magpie)
     p.project_aoi_task = p.add_task(project_aoi)
     
-    p.magpie_task = p.add_task(magpie_integration.launch_magpie)
     
-    # Process the IUCN-specific data to be used in SEALS
-    p.biodiversity_task = p.add_task(seals_generate_base_data.biodiversity)
-    p.kbas_task = p.add_task(seals_generate_base_data.kba, parent=p.biodiversity_task)
-    p.star_task = p.add_task(seals_generate_base_data.star, parent=p.biodiversity_task)
 
     ##### FINE PROCESSED INPUTS #####    
     p.fine_processed_inputs_task = p.add_task(seals_generate_base_data.fine_processed_inputs)
@@ -291,14 +287,6 @@ def build_magpie_seals_task_tree(p):
     p.coarse_simplified_task = p.add_task(seals_process_coarse_timeseries.coarse_simplified_proportion, parent=p.coarse_change_task, skip_existing=0)
     p.coarse_simplified_ha_task = p.add_task(seals_process_coarse_timeseries.coarse_simplified_ha, parent=p.coarse_change_task, skip_existing=0)
     p.coarse_simplified_ha_difference_from_previous_year_task = p.add_task(seals_process_coarse_timeseries.coarse_simplified_ha_difference_from_previous_year, parent=p.coarse_change_task, skip_existing=0)
-
-    # IUCN SPECIFIC
-    p.iucn_30by30_scenarios_task = p.add_task(seals_main.iucn_30by30_scenarios)     
-    p.pa_zonal_sums_task = p.add_task(seals_main.pa_zonal_sums, parent=p.iucn_30by30_scenarios_task)
-    p.ag_value_task = p.add_task(seals_main.ag_value, parent=p.iucn_30by30_scenarios_task)
-    p.luh_seals_baseline_adjustment_task = p.add_task(seals_main.luh_seals_baseline_adjustment, parent=p.iucn_30by30_scenarios_task)
-    p.coarse_simplified_projected_ha_difference_from_previous_year_task = p.add_task(seals_main.coarse_simplified_projected_ha_difference_from_previous_year, parent=p.iucn_30by30_scenarios_task)
-
 
     ##### ALLOCATION #####
     p.allocations_task = p.add_iterator(seals_main.allocations)

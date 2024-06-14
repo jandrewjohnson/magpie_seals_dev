@@ -25,7 +25,7 @@ if __name__ == '__main__':
     # ProjectFlow only calculates tasks that haven't been done yet, so adding 
     # a new project_name will give a fresh directory and ensure all parts
     # are run.
-    project_name = 'test_standard'
+    project_name = 'test_magpie_seals'
     
     # The project-dir is where everything will be stored, in particular in an input, intermediate, or output dir
     # IMPORTANT NOTE: This should not be in a cloud-synced directory (e.g. dropbox, google drive, etc.), which
@@ -61,7 +61,7 @@ if __name__ == '__main__':
     # SEALS will run based on the scenarios defined in a scenario_definitions.csv
     # If you have not run SEALS before, SEALS will generate it in your project's input_dir.
     # A useful way to get started is to to run SEALS on the test data without modification
-    # and then edit the scenario_definitions.csv to your project needs.
+    # and then edit the scenario_definitions.csv to you  r project needs.
     # Some of the other test files use different scenario definition csvs 
     # to illustrate the technique. If you point to one of these 
     # (or any one CSV that already exists), SEALS will not generate a new one.    
